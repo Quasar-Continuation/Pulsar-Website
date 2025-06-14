@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 220 100% 85%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 220 100% 85%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 220 100% 85%;
+    --primary: 220 100% 85%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 220 100% 85%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 220 100% 85%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 220 100% 85%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom glow effects for Pulsar branding */
+.pulsar-glow {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 25%, #1d4ed8 50%, #2563eb 75%, #1e3a8a 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 40px rgba(30, 64, 175, 0.3));
+  }
+}
+
+/* Enhanced glow for hero title */
+.hero-pulsar {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 20%, #2563eb 40%, #1d4ed8 60%, #1e40af 80%, #1e3a8a 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hero-glow 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.7)) drop-shadow(0 0 60px rgba(30, 64, 175, 0.4));
+  text-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+}
+
+@keyframes hero-glow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 50px rgba(30, 64, 175, 0.3));
+    transform: scale(1);
+  }
+  33% {
+    background-position: 50% 0%;
+    filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 70px rgba(30, 64, 175, 0.5));
+    transform: scale(1.01);
+  }
+  66% {
+    background-position: 100% 100%;
+    filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.9)) drop-shadow(0 0 80px rgba(30, 64, 175, 0.6));
+    transform: scale(1.02);
+  }
+}
+
+/* Sliding underline animation for buttons */
+.slide-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.slide-underline::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.slide-underline:hover::after {
+  width: 100%;
+}
+
+/* Smooth transition for all button text */
+button span {
+  transition: all 0.2s ease-in-out;
+}
