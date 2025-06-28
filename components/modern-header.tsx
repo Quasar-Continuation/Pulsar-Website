@@ -5,7 +5,7 @@
               asChild
             >
               <a
-                href="https://github.com/Quasar-Continuation/Pulsar"
+                href="https://github.com/Quasar-Continuation/Pulsar-Lite"
                 target="_blank"
                 rel="noopener noreferrer"
               >

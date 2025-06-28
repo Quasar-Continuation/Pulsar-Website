@@ -22,7 +22,7 @@ export default function Home() {
     setIsDownloading(true)
     try {
       const response = await fetch(
-        "https://api.github.com/repos/Quasar-Continuation/Pulsar/releases/tags/AutoBuild",
+        "https://api.github.com/repos/Quasar-Continuation/Pulsar-Lite/releases/tags/AutoBuild",
         {
           headers: {
             Accept: "application/vnd.github.v3+json",
@@ -53,7 +53,7 @@ export default function Home() {
     } catch (error) {
       console.error("Failed to fetch release:", error)
       // Fallback to the releases page if the API call fails
-      window.open("https://github.com/Quasar-Continuation/Pulsar/releases/tag/AutoBuild", "_blank")
+      window.open("https://github.com/Quasar-Continuation/Pulsar-Lite/releases/tag/AutoBuild", "_blank")
     } finally {
       setIsDownloading(false)
     }
@@ -110,7 +110,7 @@ export default function Home() {
               asChild
             >
               <a
-                href="https://github.com/Quasar-Continuation/Pulsar"
+                href="https://github.com/Quasar-Continuation/Pulsar-Lite"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -155,7 +155,7 @@ export default function Home() {
                   asChild
                 >
                   <a
-                    href="https://github.com/Quasar-Continuation/Pulsar"
+                    href="https://github.com/Quasar-Continuation/Pulsar-Lite"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
