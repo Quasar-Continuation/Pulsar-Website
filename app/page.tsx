@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Download, Github, Send, Star } from "lucide-react"
+import { ArrowRight, Download, Send, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import FeaturesShowcase from "@/components/features-showcase"
@@ -10,9 +10,9 @@ import ContributorCard from "@/components/contributor-card"
 import CodeBlock from "@/components/code-block"
 import Roadmap from "@/components/roadmap"
 import ModernFooter from "@/components/modern-footer"
-import GitHubCollaborators from "@/components/github-collaborators"
-import GitHubLatestRelease from "@/components/github-latest-release"
-import GitHubIssues from "@/components/github-issues"
+import GitLabContributors from "@/components/gitlab-contributors"
+import GitLabLatestBuild from "@/components/gitlab-latest-build"
+import GitLabIssues from "@/components/gitlab-issues"
 import { useState } from "react"
 
 export default function Home() {
@@ -21,39 +21,13 @@ export default function Home() {
   const handleDownload = async () => {
     setIsDownloading(true)
     try {
-      const response = await fetch(
-        "https://api.github.com/repos/Quasar-Continuation/Pulsar-Lite/releases/tags/AutoBuild",
-        {
-          headers: {
-            Accept: "application/vnd.github.v3+json",
-          },
-        }
-      )
-
-      if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.status}`)
-      }
-
-      const data = await response.json()
-      
-      // If there are no assets, redirect to the release page
-      if (!data.assets || data.assets.length === 0) {
-        window.open(data.html_url, "_blank")
-        return
-      }
-
-      // Find the build_output.zip file
-      const buildOutput = data.assets.find((asset: any) => asset.name === "build_output.zip")
-      
-      // If build_output.zip is not found, use the first asset
-      const downloadAsset = buildOutput || data.assets[0]
-      
-      // Open the download URL
-      window.open(downloadAsset.browser_download_url, "_blank")
+      // Direct link to GitLab artifact
+      const downloadUrl = "https://gitlab.pulsar-rat.dev/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
+      window.open(downloadUrl, "_blank")
     } catch (error) {
-      console.error("Failed to fetch release:", error)
-      // Fallback to the releases page if the API call fails
-      window.open("https://github.com/Quasar-Continuation/Pulsar-Lite/releases/tag/AutoBuild", "_blank")
+      console.error("Failed to initiate download:", error)
+      // Fallback to the project page if the direct download fails
+      window.open("https://gitlab.pulsar-rat.dev/pulsar/pulsar", "_blank")
     } finally {
       setIsDownloading(false)
     }
@@ -110,12 +84,14 @@ export default function Home() {
               asChild
             >
               <a
-                href="https://github.com/Quasar-Continuation/Pulsar-Lite"
+                href="https://gitlab.pulsar-rat.dev/pulsar/pulsar"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-4 w-4" />
-                <span className="slide-underline">GitHub</span>
+                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span className="slide-underline">GitLab</span>
               </a>
             </Button>
             <Button size="sm" className="gap-2 bg-blue-600 text-blue-50 hover:bg-blue-700">
@@ -155,12 +131,14 @@ export default function Home() {
                   asChild
                 >
                   <a
-                    href="https://github.com/Quasar-Continuation/Pulsar-Lite"
+                    href="https://gitlab.pulsar-rat.dev/pulsar/pulsar"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Github className="h-5 w-5" />
-                    <span className="slide-underline">View on GitHub</span>
+                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span className="slide-underline">View on GitLab</span>
                   </a>
                 </Button>
               </div>
@@ -208,7 +186,10 @@ export default function Home() {
               Get started with Pulsar today. Download the latest stable release and take control of your remote
               administration needs.
             </p>
-            <GitHubLatestRelease owner="Quasar-Continuation" repo="Pulsar-Lite" />
+            <GitLabLatestBuild 
+              projectUrl="https://gitlab.pulsar-rat.dev/pulsar/pulsar"
+              artifactUrl="https://gitlab.pulsar-rat.dev/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
+            />
           </div>
         </div>
       </section>
@@ -350,7 +331,7 @@ export default function Home() {
               Meet the amazing developers who contribute to Pulsar's development.
             </p>
           </div>
-          <GitHubCollaborators owner="Quasar-Continuation" repo="Pulsar-Lite" />
+          <GitLabContributors projectId="pulsar%2Fpulsar" projectUrl="https://gitlab.pulsar-rat.dev/pulsar/pulsar" />
         </div>
       </section>
 
@@ -363,7 +344,7 @@ export default function Home() {
               Track the latest issues and feature requests for Pulsar.
             </p>
           </div>
-          <GitHubIssues owner="Quasar-Continuation" repo="Pulsar-Lite" />
+          <GitLabIssues projectId="pulsar%2Fpulsar" projectUrl="https://gitlab.pulsar-rat.dev/pulsar/pulsar" />
         </div>
       </section>
 
