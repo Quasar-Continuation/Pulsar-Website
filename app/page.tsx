@@ -208,7 +208,7 @@ export default function Home() {
               Get started with Pulsar today. Download the latest stable release and take control of your remote
               administration needs.
             </p>
-            <GitHubLatestRelease owner="Quasar-Continuation" repo="Pulsar" />
+            <GitHubLatestRelease owner="Quasar-Continuation" repo="Pulsar-Lite" />
           </div>
         </div>
       </section>
@@ -350,7 +350,7 @@ export default function Home() {
               Meet the amazing developers who contribute to Pulsar's development.
             </p>
           </div>
-          <GitHubCollaborators owner="Quasar-Continuation" repo="Pulsar" />
+          <GitHubCollaborators owner="Quasar-Continuation" repo="Pulsar-Lite" />
         </div>
       </section>
 
@@ -363,7 +363,7 @@ export default function Home() {
               Track the latest issues and feature requests for Pulsar.
             </p>
           </div>
-          <GitHubIssues owner="Quasar-Continuation" repo="Pulsar" />
+          <GitHubIssues owner="Quasar-Continuation" repo="Pulsar-Lite" />
         </div>
       </section>
 
