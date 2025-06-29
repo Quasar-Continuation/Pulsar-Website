@@ -20,8 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script defer data-domain="rat.ad" src="https://analytics.rat.ad/js/script.file-downloads.hash.outbound-links.pageview-props.tagged-events.js"></script>
-        <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+        <script defer data-domain="rat.ad" src="https://analytics.rat.ad/js/script.file-downloads.outbound-links.js"></script>
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
