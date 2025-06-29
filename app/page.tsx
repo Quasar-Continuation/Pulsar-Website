@@ -22,12 +22,12 @@ export default function Home() {
     setIsDownloading(true)
     try {
       // Direct link to GitLab artifact
-      const downloadUrl = "https://gitlab.pulsar-rat.dev/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
+      const downloadUrl = "https://gitlab.rat.ad/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
       window.open(downloadUrl, "_blank")
     } catch (error) {
       console.error("Failed to initiate download:", error)
       // Fallback to the project page if the direct download fails
-      window.open("https://gitlab.pulsar-rat.dev/pulsar/pulsar", "_blank")
+      window.open("https://gitlab.rat.ad/pulsar/pulsar", "_blank")
     } finally {
       setIsDownloading(false)
     }
@@ -84,7 +84,7 @@ export default function Home() {
               asChild
             >
               <a
-                href="https://gitlab.pulsar-rat.dev/pulsar/pulsar"
+                href="https://gitlab.rat.ad/pulsar/pulsar"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -131,7 +131,7 @@ export default function Home() {
                   asChild
                 >
                   <a
-                    href="https://gitlab.pulsar-rat.dev/pulsar/pulsar"
+                    href="https://gitlab.rat.ad/pulsar/pulsar"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -187,8 +187,8 @@ export default function Home() {
               administration needs.
             </p>
             <GitLabLatestBuild 
-              projectUrl="https://gitlab.pulsar-rat.dev/pulsar/pulsar"
-              artifactUrl="https://gitlab.pulsar-rat.dev/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
+              projectUrl="https://gitlab.rat.ad/pulsar/pulsar"
+              artifactUrl="https://gitlab.rat.ad/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
             />
           </div>
         </div>
@@ -331,7 +331,7 @@ export default function Home() {
               Meet the amazing developers who contribute to Pulsar's development.
             </p>
           </div>
-          <GitLabContributors projectId="pulsar%2Fpulsar" projectUrl="https://gitlab.pulsar-rat.dev/pulsar/pulsar" />
+          <GitLabContributors projectId="pulsar%2Fpulsar" projectUrl="https://gitlab.rat.ad/pulsar/pulsar" />
         </div>
       </section>
 
@@ -344,7 +344,7 @@ export default function Home() {
               Track the latest issues and feature requests for Pulsar.
             </p>
           </div>
-          <GitLabIssues projectId="pulsar%2Fpulsar" projectUrl="https://gitlab.pulsar-rat.dev/pulsar/pulsar" />
+          <GitLabIssues projectId="pulsar%2Fpulsar" projectUrl="https://gitlab.rat.ad/pulsar/pulsar" />
         </div>
       </section>
 

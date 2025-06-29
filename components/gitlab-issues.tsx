@@ -39,7 +39,7 @@ export default function GitLabIssues({ projectId, projectUrl }: GitLabIssuesProp
 
       try {
         const response = await fetch(
-          `https://gitlab.pulsar-rat.dev/api/v4/projects/${projectId}/issues?state=${filter}&page=${page}&per_page=10`,
+          `https://gitlab.rat.ad/api/v4/projects/${projectId}/issues?state=${filter}&page=${page}&per_page=10`,
           {
             headers: {
               Accept: "application/json",
