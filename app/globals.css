@@ -4,29 +4,6 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
     --background: 240 10% 3.9%;
     --foreground: 220 100% 85%;
     --card: 240 10% 3.9%;
@@ -46,6 +23,14 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+    --radius: 0.5rem;
+
+    /* Neon Colors */
+    --neon-blue: 213 94% 68%;
+    --neon-cyan: 189 100% 56%;
+    --neon-purple: 271 91% 65%;
+    --neon-pink: 322 84% 60%;
+    --neon-green: 120 100% 50%;
   }
 }
 
@@ -55,64 +40,206 @@
   }
   body {
     @apply bg-background text-foreground;
+    background: 
+      radial-gradient(circle at 20% 80%, hsl(var(--neon-blue) / 0.15) 0%, transparent 30%),
+      radial-gradient(circle at 80% 20%, hsl(var(--neon-purple) / 0.15) 0%, transparent 30%),
+      radial-gradient(circle at 40% 40%, hsl(var(--neon-cyan) / 0.1) 0%, transparent 30%),
+      linear-gradient(135deg, #0a0a0f 0%, #111827 50%, #1e293b 100%);
+    background-attachment: fixed;
   }
 }
 
-/* Custom glow effects for Pulsar branding */
+/* Animated gradient background */
+.gradient-bg {
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #1e40af, #3730a3);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Enhanced Pulsar branding with neon effects */
 .pulsar-glow {
-  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 25%, #1d4ed8 50%, #2563eb 75%, #1e3a8a 100%);
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, 
+    hsl(var(--neon-blue)) 0%, 
+    hsl(var(--neon-cyan)) 25%, 
+    hsl(var(--neon-purple)) 50%, 
+    hsl(var(--neon-pink)) 75%, 
+    hsl(var(--neon-blue)) 100%);
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+  animation: neonFlow 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px hsl(var(--neon-blue) / 0.8))
+          drop-shadow(0 0 40px hsl(var(--neon-cyan) / 0.4));
 }
 
-@keyframes shimmer {
-  0%,
-  100% {
+@keyframes neonFlow {
+  0%, 100% {
     background-position: 0% 50%;
-    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.4));
+    filter: drop-shadow(0 0 20px hsl(var(--neon-blue) / 0.8))
+            drop-shadow(0 0 40px hsl(var(--neon-cyan) / 0.4));
+  }
+  25% {
+    background-position: 100% 0%;
+    filter: drop-shadow(0 0 25px hsl(var(--neon-cyan) / 0.9))
+            drop-shadow(0 0 50px hsl(var(--neon-purple) / 0.5));
   }
   50% {
-    background-position: 100% 50%;
-    filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 40px rgba(30, 64, 175, 0.3));
+    background-position: 50% 100%;
+    filter: drop-shadow(0 0 30px hsl(var(--neon-purple) / 1))
+            drop-shadow(0 0 60px hsl(var(--neon-pink) / 0.6));
+  }
+  75% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 25px hsl(var(--neon-pink) / 0.9))
+            drop-shadow(0 0 50px hsl(var(--neon-blue) / 0.5));
   }
 }
 
-/* Enhanced glow for hero title */
+/* Hero title with intense neon effect */
 .hero-pulsar {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 20%, #2563eb 40%, #1d4ed8 60%, #1e40af 80%, #1e3a8a 100%);
-  background-size: 300% 300%;
+  background: linear-gradient(135deg, 
+    hsl(var(--neon-cyan)) 0%, 
+    hsl(var(--neon-blue)) 20%, 
+    hsl(var(--neon-purple)) 40%, 
+    hsl(var(--neon-pink)) 60%, 
+    hsl(var(--neon-cyan)) 80%, 
+    hsl(var(--neon-blue)) 100%);
+  background-size: 600% 600%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: hero-glow 5s ease-in-out infinite;
-  filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.7)) drop-shadow(0 0 60px rgba(30, 64, 175, 0.4));
-  text-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+  animation: heroNeonPulse 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px hsl(var(--neon-cyan) / 1))
+          drop-shadow(0 0 60px hsl(var(--neon-blue) / 0.8))
+          drop-shadow(0 0 90px hsl(var(--neon-purple) / 0.6));
 }
 
-@keyframes hero-glow {
-  0%,
-  100% {
+@keyframes heroNeonPulse {
+  0%, 100% {
     background-position: 0% 50%;
-    filter: drop-shadow(0 0 25px rgba(59, 130, 246, 0.6)) drop-shadow(0 0 50px rgba(30, 64, 175, 0.3));
+    filter: drop-shadow(0 0 30px hsl(var(--neon-cyan) / 1))
+            drop-shadow(0 0 60px hsl(var(--neon-blue) / 0.8))
+            drop-shadow(0 0 90px hsl(var(--neon-purple) / 0.6));
     transform: scale(1);
   }
-  33% {
+  20% {
     background-position: 50% 0%;
-    filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 70px rgba(30, 64, 175, 0.5));
-    transform: scale(1.01);
-  }
-  66% {
-    background-position: 100% 100%;
-    filter: drop-shadow(0 0 40px rgba(59, 130, 246, 0.9)) drop-shadow(0 0 80px rgba(30, 64, 175, 0.6));
+    filter: drop-shadow(0 0 40px hsl(var(--neon-blue) / 1.2))
+            drop-shadow(0 0 80px hsl(var(--neon-purple) / 1))
+            drop-shadow(0 0 120px hsl(var(--neon-pink) / 0.8));
     transform: scale(1.02);
+  }
+  40% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 50px hsl(var(--neon-purple) / 1.3))
+            drop-shadow(0 0 100px hsl(var(--neon-pink) / 1.1))
+            drop-shadow(0 0 150px hsl(var(--neon-cyan) / 0.9));
+    transform: scale(1.03);
+  }
+  60% {
+    background-position: 50% 100%;
+    filter: drop-shadow(0 0 45px hsl(var(--neon-pink) / 1.2))
+            drop-shadow(0 0 90px hsl(var(--neon-cyan) / 1))
+            drop-shadow(0 0 135px hsl(var(--neon-blue) / 0.8));
+    transform: scale(1.02);
+  }
+  80% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 35px hsl(var(--neon-cyan) / 1.1))
+            drop-shadow(0 0 70px hsl(var(--neon-blue) / 0.9))
+            drop-shadow(0 0 105px hsl(var(--neon-purple) / 0.7));
+    transform: scale(1.01);
   }
 }
 
-/* Sliding underline animation for buttons */
+/* Neon button effects */
+.neon-button {
+  position: relative;
+  background: linear-gradient(135deg, 
+    hsl(var(--neon-blue) / 0.2), 
+    hsl(var(--neon-cyan) / 0.2));
+  border: 1px solid hsl(var(--neon-blue) / 0.5);
+  box-shadow: 
+    0 0 20px hsl(var(--neon-blue) / 0.3),
+    inset 0 0 20px hsl(var(--neon-blue) / 0.1);
+  transition: all 0.3s ease;
+}
+
+.neon-button:hover {
+  background: linear-gradient(135deg, 
+    hsl(var(--neon-blue) / 0.3), 
+    hsl(var(--neon-cyan) / 0.3));
+  border-color: hsl(var(--neon-cyan) / 0.8);
+  box-shadow: 
+    0 0 30px hsl(var(--neon-blue) / 0.6),
+    0 0 60px hsl(var(--neon-cyan) / 0.4),
+    inset 0 0 30px hsl(var(--neon-blue) / 0.2);
+  transform: translateY(-2px);
+}
+
+/* Neon card effects */
+.neon-card {
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.8), 
+    rgba(30, 41, 59, 0.6));
+  border: 1px solid hsl(var(--neon-blue) / 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 20px hsl(var(--neon-blue) / 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.neon-card:hover {
+  border-color: hsl(var(--neon-cyan) / 0.6);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px hsl(var(--neon-blue) / 0.4),
+    0 0 60px hsl(var(--neon-cyan) / 0.2);
+  transform: translateY(-4px);
+}
+
+/* Feature card neon highlights */
+.feature-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    hsl(var(--neon-cyan) / 0.1), 
+    transparent);
+  transition: left 0.5s ease;
+}
+
+.feature-card:hover::before {
+  left: 100%;
+}
+
+/* Glowing text effect */
+.glow-text {
+  color: hsl(var(--neon-cyan));
+  text-shadow: 
+    0 0 10px hsl(var(--neon-cyan) / 0.8),
+    0 0 20px hsl(var(--neon-cyan) / 0.6),
+    0 0 30px hsl(var(--neon-cyan) / 0.4);
+}
+
+/* Sliding underline with neon effect */
 .slide-underline {
   position: relative;
   display: inline-block;
@@ -125,7 +252,10 @@
   height: 2px;
   bottom: -2px;
   left: 0;
-  background-color: currentColor;
+  background: linear-gradient(90deg, 
+    hsl(var(--neon-blue)), 
+    hsl(var(--neon-cyan)));
+  box-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.8);
   transition: width 0.3s ease;
 }
 
@@ -133,7 +263,34 @@
   width: 100%;
 }
 
-/* Smooth transition for all button text */
-button span {
-  transition: all 0.2s ease-in-out;
+/* Floating animation for cards */
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+/* Mobile optimized text sizes */
+@media (max-width: 768px) {
+  .hero-pulsar {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .pulsar-glow {
+    font-size: 1.25rem;
+  }
+  
+  .neon-card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }

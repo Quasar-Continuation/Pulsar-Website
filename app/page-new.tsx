@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { ArrowRight, Download, Send, Star, Zap, Shield, Globe, Sparkles, Copy, Heart } from "lucide-react"
+import { ArrowRight, Download, Send, Star, Zap, Shield, Globe, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import ModernHeader from "@/components/modern-header"
@@ -14,7 +14,6 @@ import { useState } from "react"
 
 export default function Home() {
   const [isDownloading, setIsDownloading] = useState(false)
-  const [copiedAddress, setCopiedAddress] = useState<string | null>(null)
 
   const handleDownload = async () => {
     setIsDownloading(true)
@@ -29,19 +28,9 @@ export default function Home() {
     }
   }
 
-  const copyToClipboard = async (address: string, type: string) => {
-    try {
-      await navigator.clipboard.writeText(address)
-      setCopiedAddress(type)
-      setTimeout(() => setCopiedAddress(null), 2000)
-    } catch (err) {
-      console.error("Failed to copy:", err)
-    }
-  }
-
   const stats = [
     { icon: <Download className="h-5 w-5" />, value: "50K+", label: "Downloads" },
-    { icon: <Star className="h-5 w-5" />, value: "60 fps", label: "Remote Desktop" },
+    { icon: <Star className="h-5 w-5" />, value: "4.8", label: "Rating" },
     { icon: <Shield className="h-5 w-5" />, value: "256-bit", label: "Encryption" },
     { icon: <Zap className="h-5 w-5" />, value: "<10ms", label: "Latency" },
   ]
@@ -138,7 +127,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
               >
                 <Send className="h-4 w-4" />
-                <span className="slide-underline">Join the Telegram</span>
+                <span className="slide-underline">Join our community</span>
               </Link>
             </div>
           </div>
@@ -264,77 +253,6 @@ export default function Home() {
                 Always ensure you have proper authorization before accessing any system.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Donations Section */}
-      <section className="py-16 md:py-24 bg-black/20">
-        <div className="container px-4">
-          <div className="mx-auto max-w-3xl text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="glow-text">Support Development</span>
-            </h2>
-            <p className="text-lg text-zinc-400">
-              Help us continue developing and improving Pulsar with your donations
-            </p>
-          </div>
-          
-          <div className="max-w-2xl mx-auto grid md:grid-cols-2 gap-6">
-            {/* Bitcoin Donation */}
-            <Card className="neon-card hover-glow">
-              <CardContent className="p-6">
-                <div className="text-center mb-4">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-orange-500 to-yellow-400 text-white font-bold text-2xl mb-4">
-                    ₿
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Bitcoin (BTC)</h3>
-                </div>
-                <div className="bg-black/40 rounded-lg p-4 mb-4">
-                  <p className="text-xs text-zinc-300 font-mono break-all leading-relaxed">
-                    bc1q0q4e6mtrtqct7xvmv6hcucaaljn5j3djaxf3p4
-                  </p>
-                </div>
-                <Button
-                  onClick={() => copyToClipboard("bc1q0q4e6mtrtqct7xvmv6hcucaaljn5j3djaxf3p4", "btc")}
-                  className="w-full bg-gradient-to-r from-orange-600 to-yellow-500 hover:from-orange-500 hover:to-yellow-400 text-white border-0"
-                >
-                  <Copy className="h-4 w-4 mr-2" />
-                  {copiedAddress === "btc" ? "Copied!" : "Copy Address"}
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Monero Donation */}
-            <Card className="neon-card hover-glow">
-              <CardContent className="p-6">
-                <div className="text-center mb-4">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-orange-600 to-red-500 text-white font-bold text-2xl mb-4">
-                    Ɱ
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Monero (XMR)</h3>
-                </div>
-                <div className="bg-black/40 rounded-lg p-4 mb-4">
-                  <p className="text-xs text-zinc-300 font-mono break-all leading-relaxed">
-                    8Ao3U16N9mTAXRTexBsS9QWrS742Yzxj7A7yk23dEqjG7wANXxuaiizNC5Bo4k8UttPBjfCpAfSfmcSbkaWX46vs7uwCzMz
-                  </p>
-                </div>
-                <Button
-                  onClick={() => copyToClipboard("8Ao3U16N9mTAXRTexBsS9QWrS742Yzxj7A7yk23dEqjG7wANXxuaiizNC5Bo4k8UttPBjfCpAfSfmcSbkaWX46vs7uwCzMz", "xmr")}
-                  className="w-full bg-gradient-to-r from-orange-700 to-red-600 hover:from-orange-600 hover:to-red-500 text-white border-0"
-                >
-                  <Copy className="h-4 w-4 mr-2" />
-                  {copiedAddress === "xmr" ? "Copied!" : "Copy Address"}
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center mt-8">
-            <p className="text-sm text-zinc-400 flex items-center justify-center gap-2">
-              <Heart className="h-4 w-4 text-red-400" />
-              Your support helps keep Pulsar free and open source
-            </p>
           </div>
         </div>
       </section>
