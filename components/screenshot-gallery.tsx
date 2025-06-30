@@ -10,37 +10,37 @@ const screenshots = [
   {
     id: 1,
     title: "Remote Shell",
-    src: "/placeholder.svg?height=720&width=1280",
+    src: "/screenshots/Remote-Shell.png",
     alt: "Pulsar Remote Shell interface",
   },
   {
     id: 2,
     title: "Remote Desktop",
-    src: "/placeholder.svg?height=720&width=1280",
+    src: "/screenshots/Remote-Desktop.png",
     alt: "Pulsar Remote Desktop interface",
   },
   {
     id: 3,
     title: "File Manager",
-    src: "/placeholder.svg?height=720&width=1280",
+    src: "/screenshots/File-Manager.png",
     alt: "Pulsar File Manager interface",
   },
   {
     id: 4,
     title: "Task Manager",
-    src: "/placeholder.svg?height=720&width=1280",
+    src: "/screenshots/Task-Manager.png",
     alt: "Pulsar Task Manager interface",
   },
   {
     id: 5,
     title: "Registry Editor",
-    src: "/placeholder.svg?height=720&width=1280",
+    src: "/screenshots/Registry-Editor.png",
     alt: "Pulsar Registry Editor interface",
   },
   {
     id: 6,
     title: "Keylogger",
-    src: "/placeholder.svg?height=720&width=1280",
+    src: "/screenshots/Keylogger.png",
     alt: "Pulsar Keylogger interface",
   },
 ]
