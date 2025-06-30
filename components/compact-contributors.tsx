@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { User, AlertCircle, Users, ChevronRight } from "lucide-react"
+import { useInViewAnimation } from "@/hooks/use-in-view-animation"
 
 interface Contributor {
   name: string
@@ -24,6 +25,9 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [showAll, setShowAll] = useState(false)
+  
+  const { ref: mobileRef, isInView: mobileInView } = useInViewAnimation()
+  const { ref: desktopRef, isInView: desktopInView } = useInViewAnimation()
 
   useEffect(() => {
     const fetchContributors = async () => {
@@ -47,13 +51,13 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
         const data = await response.json()
         setContributors(data)
       } catch (err) {
-        setError("Unable to load contributors")
+        setError("Using demo contributors")
         
-        // Fallback contributors for demo
+        // Fallback contributors for demo - always set this so we have contributors to show
         setContributors([
           {
-            name: "Pulsar Team",
-            username: "pulsar-dev",
+            name: "Pulsar Team Lead",
+            username: "pulsar-lead", 
             avatar_url: "/pulsar-logo.png",
             web_url: projectUrl,
             commits_count: 150
@@ -66,7 +70,7 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
             commits_count: 89
           },
           {
-            name: "Security Expert",
+            name: "Security Expert", 
             username: "security-dev",
             avatar_url: "/placeholder-user.jpg",
             web_url: projectUrl,
@@ -74,10 +78,38 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
           },
           {
             name: "UI/UX Designer",
-            username: "ui-dev",
+            username: "ui-dev", 
             avatar_url: "/placeholder-user.jpg",
             web_url: projectUrl,
-            commits_count: 34
+            commits_count: 45
+          },
+          {
+            name: "Backend Developer",
+            username: "backend-dev",
+            avatar_url: "/placeholder-user.jpg", 
+            web_url: projectUrl,
+            commits_count: 38
+          },
+          {
+            name: "Network Specialist",
+            username: "network-dev",
+            avatar_url: "/placeholder-user.jpg",
+            web_url: projectUrl,
+            commits_count: 29
+          },
+          {
+            name: "QA Engineer", 
+            username: "qa-dev",
+            avatar_url: "/placeholder-user.jpg",
+            web_url: projectUrl,
+            commits_count: 24
+          },
+          {
+            name: "DevOps Engineer",
+            username: "devops-dev",
+            avatar_url: "/placeholder-user.jpg",
+            web_url: projectUrl,
+            commits_count: 18
           },
         ])
       } finally {
@@ -88,7 +120,7 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
     fetchContributors()
   }, [projectId, projectUrl])
 
-  const displayedContributors = showAll ? contributors : contributors.slice(0, 6)
+  const displayedContributors = showAll ? contributors : contributors.slice(0, 8)
 
   if (loading) {
     return (
@@ -120,14 +152,14 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
       )}
 
       {/* Mobile: Show top 3 contributors prominently */}
-      <div className="block md:hidden mb-6">
+      <div className="block md:hidden mb-6" ref={mobileRef}>
         <div className="grid grid-cols-1 gap-4 mb-4">
           {contributors.slice(0, 3).map((contributor, index) => (
             <motion.div
               key={`mobile-${contributor.username || `unknown-${index}`}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: mobileInView ? index * 0.1 : 0 }}
             >
               <Card className="neon-card hover:scale-105 transition-all duration-300">
                 <CardContent className="p-4">
@@ -204,14 +236,14 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
       </div>
 
       {/* Desktop: Grid layout */}
-      <div className="hidden md:block">
+      <div className="hidden md:block" ref={desktopRef}>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
           {displayedContributors.map((contributor, index) => (
             <motion.div
               key={`desktop-${contributor.username || `unknown-${index}`}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
+              transition={{ duration: 0.5, delay: desktopInView ? index * 0.05 : 0 }}
               className="float-animation"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -250,7 +282,7 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
           ))}
         </div>
 
-        {contributors.length > 6 && !showAll && (
+        {contributors.length > 8 && !showAll && (
           <div className="text-center">
             <Button
               variant="outline"
@@ -264,7 +296,7 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
           </div>
         )}
 
-        {showAll && contributors.length > 6 && (
+        {showAll && contributors.length > 8 && (
           <div className="text-center">
             <Button
               variant="outline"

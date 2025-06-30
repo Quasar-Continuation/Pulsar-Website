@@ -25,6 +25,7 @@ import {
   MessageSquare,
   Code,
 } from "lucide-react"
+import { useInViewAnimation } from "@/hooks/use-in-view-animation"
 
 interface Feature {
   id: string
@@ -175,6 +176,8 @@ const categories = [
 export default function FeaturesShowcase() {
   const [activeCategory, setActiveCategory] = useState("all")
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null)
+  
+  const { ref: featuresRef, isInView: featuresInView } = useInViewAnimation()
 
   const filteredFeatures =
     activeCategory === "all" ? features : features.filter((feature) => feature.category === activeCategory)
@@ -200,14 +203,14 @@ export default function FeaturesShowcase() {
       </div>
 
       {/* Features Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filteredFeatures.map((feature) => (
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3" ref={featuresRef}>
+        {filteredFeatures.map((feature, index) => (
           <motion.div
             key={feature.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, delay: featuresInView ? index * 0.1 : 0 }}
             className={cn(
               "group relative overflow-hidden rounded-lg border p-6 transition-all duration-300",
               hoveredFeature === feature.id || hoveredFeature === null

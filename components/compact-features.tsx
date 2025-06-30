@@ -17,6 +17,7 @@ import {
   ChevronRight,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useInViewAnimation } from "@/hooks/use-in-view-animation"
 
 interface Feature {
   id: string
@@ -105,6 +106,9 @@ const features: Feature[] = [
 export default function CompactFeaturesShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedFeature, setSelectedFeature] = useState(features[0])
+  
+  const { ref: mobileRef, isInView: mobileInView } = useInViewAnimation()
+  const { ref: desktopRef, isInView: desktopInView } = useInViewAnimation()
 
   const nextFeature = () => {
     const newIndex = (currentIndex + 1) % features.length
@@ -123,21 +127,10 @@ export default function CompactFeaturesShowcase() {
     setSelectedFeature(features[index])
   }
 
-  // Mobile view shows 2 items, tablet shows 3, desktop shows 4
-  const getVisibleFeatures = () => {
-    const visibleCount = {
-      mobile: 2,
-      tablet: 3,
-      desktop: 4,
-    }
-    
-    return features.slice(0, 8) // Limit to 8 features for better UX
-  }
-
   return (
     <div className="w-full max-w-6xl mx-auto px-4">
       {/* Mobile Carousel View */}
-      <div className="block md:hidden">
+      <div className="block md:hidden" ref={mobileRef}>
         <div className="relative">
           {/* Featured Card */}
           <AnimatePresence mode="wait">
@@ -184,7 +177,7 @@ export default function CompactFeaturesShowcase() {
             </Button>
             
             <div className="flex gap-2">
-              {features.slice(0, 8).map((_, index) => (
+              {features.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => selectFeature(index)}
@@ -210,14 +203,14 @@ export default function CompactFeaturesShowcase() {
         </div>
       </div>
 
-      {/* Desktop Grid View */}
-      <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {getVisibleFeatures().map((feature, index) => (
+      {/* Desktop Grid View - Show All Features */}
+      <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6" ref={desktopRef}>
+        {features.map((feature, index) => (
           <motion.div
             key={feature.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.5, delay: desktopInView ? index * 0.1 : 0 }}
             className={cn(
               "neon-card feature-card group relative overflow-hidden rounded-2xl p-6 hover:scale-105 transition-all duration-300",
               feature.accent,
@@ -245,21 +238,6 @@ export default function CompactFeaturesShowcase() {
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </motion.div>
         ))}
-      </div>
-
-      {/* Show All Features Link */}
-      <div className="text-center mt-8">
-        <Button
-          variant="outline"
-          className="neon-button group"
-          onClick={() => {
-            // You can implement a modal or expand functionality here
-            console.log("Show all features")
-          }}
-        >
-          <span className="slide-underline">View All Features</span>
-          <ChevronRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-        </Button>
       </div>
     </div>
   )
