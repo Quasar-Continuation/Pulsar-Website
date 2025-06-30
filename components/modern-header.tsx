@@ -22,7 +22,7 @@ export default function ModernHeader() {
     { href: "#features", label: "Features" },
     { href: "#showcase", label: "Gallery" },
     { href: "#download", label: "Download" },
-    { href: "#community", label: "Community" },
+    // { href: "#community", label: "Community" }, // Temporarily disabled
   ]
 
   const handleDownload = () => {

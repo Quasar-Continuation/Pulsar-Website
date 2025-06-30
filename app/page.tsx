@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import ModernHeader from "@/components/modern-header"
 import CompactFeaturesShowcase from "@/components/compact-features"
-import CompactContributors from "@/components/compact-contributors"
+// import CompactContributors from "@/components/compact-contributors"
 import ScreenshotGallery from "@/components/screenshot-gallery"
 import GitLabLatestBuild from "@/components/gitlab-latest-build"
 import ModernFooter from "@/components/modern-footer"
@@ -193,7 +193,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Community Section */}
+      {/* Community Section - Temporarily disabled */}
+      {/* 
       <section id="community" className="py-16 md:py-24 bg-black/20">
         <div className="container px-4">
           <div className="mx-auto max-w-3xl text-center mb-12">
@@ -207,6 +208,7 @@ export default function Home() {
           <CompactContributors projectId="pulsar%2Fpulsar" projectUrl="https://gitlab.rat.ad/pulsar/pulsar" />
         </div>
       </section>
+      */}
 
       {/* Quick Start Guide */}
       <section className="py-16 md:py-24">
