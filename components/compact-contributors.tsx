@@ -36,7 +36,7 @@ export default function CompactContributors({ projectId, projectUrl }: CompactCo
 
       try {
         const response = await fetch(
-          `https://gitlab.rat.ad/api/v4/projects/${projectId}/repository/contributors`,
+          `https://gitlab.rat.pe/api/v4/projects/${projectId}/repository/contributors`,
           {
             headers: {
               Accept: "application/json",

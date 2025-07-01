@@ -19,11 +19,11 @@ export default function Home() {
   const handleDownload = async () => {
     setIsDownloading(true)
     try {
-      const downloadUrl = "https://gitlab.rat.ad/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
+      const downloadUrl = "https://gitlab.rat.pe/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
       window.open(downloadUrl, "_blank")
     } catch (error) {
       console.error("Failed to initiate download:", error)
-      window.open("https://gitlab.rat.ad/pulsar/pulsar", "_blank")
+      window.open("https://gitlab.rat.pe/pulsar/pulsar", "_blank")
     } finally {
       setIsDownloading(false)
     }
@@ -101,7 +101,7 @@ export default function Home() {
                 asChild
               >
                 <a
-                  href="https://gitlab.rat.ad/pulsar/pulsar"
+                  href="https://gitlab.rat.pe/pulsar/pulsar"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
@@ -186,8 +186,8 @@ export default function Home() {
               Download the latest version and experience the future of remote administration
             </p>
             <GitLabLatestBuild 
-              projectUrl="https://gitlab.rat.ad/pulsar/pulsar"
-              artifactUrl="https://gitlab.rat.ad/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
+              projectUrl="https://gitlab.rat.pe/pulsar/pulsar"
+              artifactUrl="https://gitlab.rat.pe/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
             />
           </div>
         </div>
@@ -205,7 +205,7 @@ export default function Home() {
               The talented developers behind Pulsar's innovation
             </p>
           </div>
-          <CompactContributors projectId="pulsar%2Fpulsar" projectUrl="https://gitlab.rat.ad/pulsar/pulsar" />
+          <CompactContributors projectId="pulsar%2Fpulsar" projectUrl="https://gitlab.rat.pe/pulsar/pulsar" />
         </div>
       </section>
       */}
