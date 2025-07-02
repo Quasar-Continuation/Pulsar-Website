@@ -195,101 +195,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Key Contributors Section */}
-      <section id="contributors" className="py-16 md:py-24 bg-black/20">
-        <div className="container px-4">
-          <div className="mx-auto max-w-3xl text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="glow-text">Key Contributors</span>
-            </h2>
-            <p className="text-lg text-zinc-400">
-              Meet the talented developers who make Pulsar possible
-            </p>
-          </div>
-          
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                name: "Alex Chen",
-                role: "Lead Developer",
-                bio: "Full-stack developer with 8+ years experience in system architecture and security",
-                image: "/dev/alex-chen.jpg",
-                skills: ["C++", "Python", "Security"]
-              },
-              {
-                name: "Maria Rodriguez",
-                role: "Security Engineer", 
-                bio: "Cybersecurity specialist focused on encryption and secure communications",
-                image: "/dev/maria-rodriguez.jpg",
-                skills: ["Cryptography", "Network Security", "Pentesting"]
-              },
-              {
-                name: "David Kumar",
-                role: "UI/UX Designer",
-                bio: "Creative designer passionate about intuitive interfaces and user experience",
-                image: "/dev/david-kumar.jpg",
-                skills: ["Design", "React", "TypeScript"]
-              },
-              {
-                name: "Sarah Johnson",
-                role: "DevOps Engineer",
-                bio: "Infrastructure expert ensuring reliable builds and seamless deployments",
-                image: "/dev/sarah-johnson.jpg",
-                skills: ["CI/CD", "Docker", "Cloud"]
-              }
-            ].map((contributor, index) => (
-              <Card
-                key={index}
-                className="neon-card hover-glow float-animation"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-6 text-center">
-                  <Avatar className="w-20 h-20 mx-auto mb-4 ring-2 ring-cyan-400/50">
-                    <AvatarImage 
-                      src={contributor.image} 
-                      alt={contributor.name}
-                      className="object-cover"
-                    />
-                    <AvatarFallback className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-lg font-bold">
-                      {contributor.name.split(' ').map(n => n[0]).join('')}
-                    </AvatarFallback>
-                  </Avatar>
-                  
-                  <h3 className="text-xl font-bold text-white mb-1">{contributor.name}</h3>
-                  <p className="text-cyan-400 text-sm font-medium mb-3">{contributor.role}</p>
-                  <p className="text-zinc-300 text-sm mb-4 leading-relaxed">{contributor.bio}</p>
-                  
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {contributor.skills.map((skill, skillIndex) => (
-                      <span
-                        key={skillIndex}
-                        className="px-2 py-1 text-xs bg-gradient-to-r from-blue-600/20 to-cyan-500/20 border border-cyan-400/30 rounded-full text-cyan-300"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-          
-          <div className="text-center mt-8">
-            <p className="text-sm text-zinc-400">
-              Want to contribute? Check out our{" "}
-              <a
-                href="https://gitlab.rat.pe/pulsar/pulsar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
-              >
-                GitLab repository
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Quick Start Guide */}
       <section className="py-16 md:py-24">
         <div className="container px-4">
@@ -346,6 +251,101 @@ export default function Home() {
                 Always ensure you have proper authorization before accessing any system.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Contributors Section */}
+      <section id="contributors" className="py-16 md:py-24 bg-black/20">
+        <div className="container px-4">
+          <div className="mx-auto max-w-3xl text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="glow-text">Key Contributors</span>
+            </h2>
+            <p className="text-lg text-zinc-400">
+              Meet the talented developers who make Pulsar possible
+            </p>
+          </div>
+          
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                name: "KDot",
+                role: "Owner",
+                bio: "Me fr",
+                image: "/dev/kdot.jpg",
+                skills: ["Obfuscation", "Python", "Security", "C#", "Virtualization", "Administration"]
+              },
+              {
+                name: "Twobit",
+                role: "Lead Developer", 
+                bio: "Added Auto Tasks, Crypto Clipper, Remote Chat, Remote Scripting",
+                image: "/dev/twobit.jpg",
+                skills: ["Cryptography", "Network Security", "Pentesting"]
+              },
+              {
+                name: "Deadman",
+                role: "Lead Developer",
+                bio: "Added shellcode loading, memory dumping and many ideas",
+                image: "/dev/deadman.jpg",
+                skills: ["Design", "Security", "C#", "Project Design", "UI/UX", "Winforms"]
+              },
+              {
+                name: "Cpores",
+                role: "Some guy, idrk",
+                bio: "Worked on the majority of Kematian, other random stuff too",
+                image: "/dev/none.jpg",
+                skills: ["None smh"]
+              }
+            ].map((contributor, index) => (
+              <Card
+                key={index}
+                className="neon-card hover-glow float-animation"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <CardContent className="p-6 text-center">
+                  <Avatar className="w-20 h-20 mx-auto mb-4 ring-2 ring-cyan-400/50">
+                    <AvatarImage 
+                      src={contributor.image} 
+                      alt={contributor.name}
+                      className="object-cover"
+                    />
+                    <AvatarFallback className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-lg font-bold">
+                      {contributor.name.split(' ').map(n => n[0]).join('')}
+                    </AvatarFallback>
+                  </Avatar>
+                  
+                  <h3 className="text-xl font-bold text-white mb-1">{contributor.name}</h3>
+                  <p className="text-cyan-400 text-sm font-medium mb-3">{contributor.role}</p>
+                  <p className="text-zinc-300 text-sm mb-4 leading-relaxed">{contributor.bio}</p>
+                  
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {contributor.skills.map((skill, skillIndex) => (
+                      <span
+                        key={skillIndex}
+                        className="px-2 py-1 text-xs bg-gradient-to-r from-blue-600/20 to-cyan-500/20 border border-cyan-400/30 rounded-full text-cyan-300"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <p className="text-sm text-zinc-400">
+              Want to contribute? Check out our{" "}
+              <a
+                href="https://gitlab.rat.pe/pulsar/pulsar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:text-cyan-300 transition-colors underline"
+              >
+                GitLab repository
+              </a>
+            </p>
           </div>
         </div>
       </section>
