@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { ArrowRight, Download, Send, Star, Zap, Shield, Globe, Sparkles, Copy, Heart } from "lucide-react"
+import { FaBitcoin, FaMonero } from "react-icons/fa"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import ModernHeader from "@/components/modern-header"
@@ -288,7 +289,7 @@ export default function Home() {
               <CardContent className="p-6">
                 <div className="text-center mb-4">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-orange-500 to-yellow-400 text-white font-bold text-2xl mb-4">
-                    ₿
+                    <FaBitcoin className="h-8 w-8" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">Bitcoin (BTC)</h3>
                 </div>
@@ -312,7 +313,7 @@ export default function Home() {
               <CardContent className="p-6">
                 <div className="text-center mb-4">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-orange-600 to-red-500 text-white font-bold text-2xl mb-4">
-                    Ɱ
+                    <FaMonero className="h-8 w-8" />
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">Monero (XMR)</h3>
                 </div>
