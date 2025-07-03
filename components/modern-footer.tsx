@@ -125,6 +125,15 @@ export default function ModernFooter() {
             >
               Vn0
             </a>
+            {" & "}
+            <a
+              href="https://github.com/KingKDot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors slide-underline"
+            >
+              kdot
+            </a>
           </div>
           <div className="flex space-x-6 text-sm text-zinc-500">
             <Link href="#" className="hover:text-zinc-300 slide-underline">
