@@ -8,15 +8,167 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import ModernHeader from "@/components/modern-header"
 import CompactFeaturesShowcase from "@/components/compact-features"
-// import CompactContributors from "@/components/compact-contributors"
 import ScreenshotGallery from "@/components/screenshot-gallery"
 import GitLabLatestBuild from "@/components/gitlab-latest-build"
 import ModernFooter from "@/components/modern-footer"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Home() {
   const [isDownloading, setIsDownloading] = useState(false)
   const [copiedAddress, setCopiedAddress] = useState<string | null>(null)
+
+  useEffect(() => {
+    const settings = {
+      totalMeteors: 18,
+      angle: 42,
+      speedRange: [0.8, 2.0],
+      sizeRange: [0.5, 1.4],
+      lengthRange: [20, 40],
+      color: '255, 255, 255',
+      opacity: 0.78,
+      fadeTriggerRatio: 0.5,
+      fadeRate: 0.02,
+      leftSpawnOffset: 200,
+      boostChance: 0.2,
+      boostSpeedRange: [2, 3],
+    };
+
+    const container = document.querySelector('.meteor-container');
+    if (!container) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.top = '0';
+    canvas.style.left = `-${settings.leftSpawnOffset}px`;
+    canvas.style.width = `calc(100% + ${settings.leftSpawnOffset}px)`;
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.zIndex = '1';
+    container.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let canvasWidth, canvasHeight;
+
+    function updateCanvasSize() {
+      const rect = container.getBoundingClientRect();
+      canvasWidth = rect.width + settings.leftSpawnOffset;
+      canvasHeight = rect.height;
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+    }
+
+    updateCanvasSize();
+    window.addEventListener('resize', updateCanvasSize);
+
+    class ShootingStar {
+      constructor() {
+        this.init();
+      }
+
+      init() {
+        const fromLeft = Math.random() < 0.5;
+        this.x = fromLeft
+          ? Math.random() * -settings.leftSpawnOffset
+          : Math.random() * canvasWidth;
+        this.y = fromLeft
+          ? Math.random() * canvasHeight
+          : -50;
+
+        const [minSpeed, maxSpeed] = settings.speedRange;
+        const [minSize, maxSize] = settings.sizeRange;
+        const [minLength, maxLength] = settings.lengthRange;
+
+        let speed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
+
+        if (Math.random() < settings.boostChance) {
+          const [boostMin, boostMax] = settings.boostSpeedRange;
+          speed += Math.random() * (boostMax - boostMin) + boostMin;
+        }
+
+        this.length = Math.random() * (maxLength - minLength) + minLength;
+        this.size = Math.random() * (maxSize - minSize) + minSize;
+        this.speed = speed;
+        this.angle = settings.angle * (Math.PI / 180);
+        this.opacity = 1;
+
+        this.originX = this.x;
+        this.originY = this.y;
+        this.maxTravel = Math.sqrt(canvasWidth ** 2 + canvasHeight ** 2);
+        this.fadeStart = this.maxTravel * (
+          settings.fadeTriggerRatio +
+          Math.random() * (1 - settings.fadeTriggerRatio)
+        );
+        this.distanceTravelled = 0;
+      }
+
+      move() {
+        const dx = Math.cos(this.angle) * this.speed;
+        const dy = Math.sin(this.angle) * this.speed;
+
+        this.x += dx;
+        this.y += dy;
+        this.distanceTravelled += Math.sqrt(dx ** 2 + dy ** 2);
+
+        if (this.distanceTravelled > this.fadeStart) {
+          this.opacity -= settings.fadeRate;
+        }
+
+        if (this.opacity <= 0 || this.x > canvasWidth + 100 || this.y > canvasHeight + 100) {
+          this.init();
+        }
+      }
+
+      render(ctx) {
+        const endX = this.x - this.length * Math.cos(this.angle);
+        const endY = this.y - this.length * Math.sin(this.angle);
+        const perpendicular = this.angle + Math.PI / 2;
+        const halfSize = this.size / 2;
+
+        ctx.save();
+
+        ctx.beginPath();
+        ctx.moveTo(endX, endY);
+        ctx.lineTo(
+          this.x + halfSize * Math.cos(perpendicular),
+          this.y + halfSize * Math.sin(perpendicular)
+        );
+        ctx.lineTo(
+          this.x - halfSize * Math.cos(perpendicular),
+          this.y - halfSize * Math.sin(perpendicular)
+        );
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${settings.color}, ${this.opacity * 0.5 * settings.opacity})`;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 1.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${settings.color}, ${this.opacity * settings.opacity})`;
+        ctx.fill();
+
+        ctx.restore();
+      }
+    }
+
+    const stars = Array.from({ length: settings.totalMeteors }, () => new ShootingStar());
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const star of stars) {
+        star.move();
+        star.render(ctx);
+      }
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    return () => {
+      window.removeEventListener('resize', updateCanvasSize);
+      if (canvas.parentNode) {
+        canvas.parentNode.removeChild(canvas);
+      }
+    };
+  }, []);
 
   const handleDownload = async () => {
     setIsDownloading(true)
@@ -56,7 +208,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center gradient-bg">
         {/* Background Effects */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden meteor-container">
           <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "2s" }}></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "4s" }}></div>
