@@ -38,22 +38,24 @@ export default function ModernHeader() {
           : "bg-transparent"
       }`}
     >
-      <div className="container flex h-16 items-center justify-between px-4">
+      <div className="container flex h-16 items-center px-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative">
-            <img 
-              src="/pulsar-logo.png" 
-              alt="Pulsar" 
-              className="h-8 w-8 transition-all duration-300 group-hover:scale-110" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-          </div>
-          <span className="text-xl font-bold pulsar-glow">Pulsar</span>
-        </Link>
+        <div className="flex-1">
+          <Link href="/" className="flex items-center gap-3 group w-fit">
+            <div className="relative">
+              <img 
+                src="/pulsar-logo.png" 
+                alt="Pulsar" 
+                className="h-8 w-8 transition-all duration-300 group-hover:scale-110" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+            </div>
+            <span className="text-xl font-bold pulsar-glow">Pulsar</span>
+          </Link>
+        </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Desktop Navigation - Centered */}
+        <nav className="hidden md:flex items-center gap-8 flex-1 justify-center">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -66,7 +68,7 @@ export default function ModernHeader() {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 flex-1 justify-end">
           <Button
             variant="outline"
             size="sm"
