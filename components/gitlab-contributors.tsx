@@ -31,7 +31,7 @@ export default function GitLabContributors({ projectId, projectUrl }: GitLabCont
         // Note: GitLab API requires authentication for private repos
         // For public repos, this should work without authentication
         const response = await fetch(
-          `https://gitlab.rat.pe/api/v4/projects/${projectId}/repository/contributors`,
+          `https://gitlab.ratting.ru/api/v4/projects/${projectId}/repository/contributors`,
           {
             headers: {
               Accept: "application/json",

@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://rat.pe'),
+  metadataBase: new URL('https://ratting.ru'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "Pulsar",
     description: "A lightweight, fast, and powerful remote administration tool written in C#.",
-    url: 'https://rat.pe',
+    url: 'https://ratting.ru',
     siteName: 'Pulsar',
     images: [
       {
@@ -71,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script defer data-domain="rat.pe" src="https://analytics.rat.pe/js/script.file-downloads.outbound-links.js"></script>
+        <script defer data-domain="ratting.ru" src="https://analytics.ratting.ru/js/script.file-downloads.outbound-links.js"></script>
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>

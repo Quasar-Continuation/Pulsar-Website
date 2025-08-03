@@ -26,7 +26,7 @@ export default function ModernHeader() {
   ]
 
   const handleDownload = () => {
-    const downloadUrl = "https://gitlab.rat.pe/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
+    const downloadUrl = "https://gitlab.ratting.ru/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
     window.open(downloadUrl, "_blank")
   }
 
@@ -76,7 +76,7 @@ export default function ModernHeader() {
             asChild
           >
             <a
-              href="https://gitlab.rat.pe/pulsar/pulsar"
+              href="https://gitlab.ratting.ru/pulsar/pulsar"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2"
@@ -147,7 +147,7 @@ export default function ModernHeader() {
                   asChild
                 >
                   <a
-                    href="https://gitlab.rat.pe/pulsar/pulsar"
+                    href="https://gitlab.ratting.ru/pulsar/pulsar"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2"

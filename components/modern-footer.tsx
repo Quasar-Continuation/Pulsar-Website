@@ -18,7 +18,7 @@ export default function ModernFooter() {
             </p>
             <div className="flex items-center gap-3 pt-2">
               <Link
-                href="https://gitlab.rat.pe/pulsar/pulsar"
+                href="https://gitlab.ratting.ru/pulsar/pulsar"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-800 text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-white"
