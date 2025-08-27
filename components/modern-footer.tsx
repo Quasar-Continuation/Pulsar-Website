@@ -29,7 +29,7 @@ export default function ModernFooter() {
                 <span className="sr-only">GitLab</span>
               </Link>
               <Link
-                href="https://t.me/SomaliDevs"
+                href="https://t.me/novashadowisgay"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-800 text-zinc-400 transition-colors hover:bg-blue-600 hover:text-white"
@@ -88,7 +88,7 @@ export default function ModernFooter() {
               <ul className="space-y-2 text-sm">
                 <li>
                   <Link
-                    href="https://t.me/SomaliDevs"
+                    href="https://t.me/novashadowisgay"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-zinc-400 transition-colors hover:text-blue-100 flex items-center gap-1 group"

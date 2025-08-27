@@ -286,7 +286,7 @@ export default function Home() {
             {/* Community Link */}
             <div className="mt-8">
               <Link
-                href="https://t.me/SomaliDevs"
+                href="https://t.me/novashadowisgay"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
