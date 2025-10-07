@@ -26,7 +26,7 @@ export default function ModernHeader() {
   ]
 
   const handleDownload = () => {
-    const downloadUrl = "https://gitlab.ratting.ru/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
+    const downloadUrl = "https://github.com/Quasar-Continuation/Poopsar/releases/download/AutoBuild/build_output.zip"
     window.open(downloadUrl, "_blank")
   }
 
@@ -76,13 +76,13 @@ export default function ModernHeader() {
             asChild
           >
             <a
-              href="https://gitlab.ratting.ru/pulsar/pulsar"
+              href="https://github.com/Quasar-Continuation/Poopsar"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2"
             >
               <Github className="h-4 w-4" />
-              <span>GitLab</span>
+              <span>GitHub</span>
             </a>
           </Button>
           <Button
@@ -147,13 +147,13 @@ export default function ModernHeader() {
                   asChild
                 >
                   <a
-                    href="https://gitlab.ratting.ru/pulsar/pulsar"
+                    href="https://github.com/Quasar-Continuation/Poopsar"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2"
                   >
                     <Github className="h-4 w-4" />
-                    View on GitLab
+                    View on GitHub
                   </a>
                 </Button>
                 <Button

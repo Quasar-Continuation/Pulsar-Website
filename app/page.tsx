@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import ModernHeader from "@/components/modern-header"
 import CompactFeaturesShowcase from "@/components/compact-features"
 import ScreenshotGallery from "@/components/screenshot-gallery"
-import GitLabLatestBuild from "@/components/gitlab-latest-build"
+import GitHubLatestRelease from "@/components/github-latest-release"
 import ModernFooter from "@/components/modern-footer"
 import { useState, useEffect } from "react"
 
@@ -339,9 +339,9 @@ export default function Home() {
             <p className="text-lg text-zinc-400 mb-8">
               Download the latest version and experience the future of remote administration
             </p>
-            <GitLabLatestBuild 
-              projectUrl="https://gitlab.ratting.ru/pulsar/pulsar"
-              artifactUrl="https://gitlab.ratting.ru/pulsar/pulsar/-/jobs/artifacts/main/raw/build_output.zip?job=build"
+            <GitHubLatestRelease 
+              owner="Quasar-Continuation"
+              repo="Poopsar"
             />
           </div>
         </div>
